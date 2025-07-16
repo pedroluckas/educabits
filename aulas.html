@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disciplinas - Professor Ferretto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='tela.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">EB</div>
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">🏠 Início</a></li>
+            <li><a href="{{ url_for('aulas') }}">📚 Aulas</a></li>
+            <li><a href="#">▶️ Ferretto+</a></li>
+            <li><a href="#">📝 Redação</a></li>
+            <li><a href="#">✔️ Provas Comentadas</a></li>
+            <li><a href="#">💬 Curso de Discursivas</a></li>
+            <li><a href="#">🌍 Cursos Regionais</a></li>
+            <li><a href="#">📖 Análise de Obras</a></li>
+            <li><a href="#">📅 Planos de Estudo</a></li>
+            <li><a href="#">🧠 Curso por Questões</a></li>
+            <li><a href="#">❓ Questões</a></li>
+            <li><a href="#">📊 Estatísticas</a></li>
+            <li><a href="#">🧪 Simulados</a></li>
+            <li class="logout-item"><a href="{{ url_for('logout') }}">Sair</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Escolha uma Disciplina</h1>
+        <div class="disciplina-grid">
+            {% for disciplina in disciplinas %}
+            <div class="disciplina-card">
+                <a href="{{ url_for('mostrar_disciplina', disciplina_url=disciplina) }}">
+                    <h3>{{ disciplina.capitalize() }}</h3> </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

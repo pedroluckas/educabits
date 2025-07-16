@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Educa Bits</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='tela.css') }}">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">EB</div>
+    <ul>
+      <li class="active"><a href="#">🏠 Início</a></li>
+      <li><a href="{{ url_for('aulas') }}">📚 Aulas</a></li>
+      <li><a href="#">▶️ Ferretto+</a></li>
+      <li><a href="#">📝 Redação</a></li>
+      <li><a href="#">✔️ Provas Comentadas</a></li>
+      <li><a href="#">💬 Curso de Discursivas</a></li>
+      <li><a href="#">🌍 Cursos Regionais</a></li>
+      <li><a href="#">📖 Análise de Obras</a></li>
+      <li><a href="#">📅 Planos de Estudo</a></li>
+      <li><a href="#">🧠 Curso por Questões</a></li>
+      <li><a href="#">❓ Questões</a></li>
+      <li><a href="#">📊 Estatísticas</a></li>
+      <li><a href="#">🧪 Simulados</a></li>
+      <li class="logout-item"><a href="{{ url_for('logout') }}">Sair</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="greeting">Olá {{ nome }}! Esse é o seu dashboard</div>
+    
+    <div class="banner">
+      <div>
+        <h2>Seja bem-vindo(a) à Plataforma da Educa Bits</h2>
+        <p>Não comece seus estudos antes de assistir a este vídeo.</p>
+        <button>Assistir agora →</button>
+      </div>
+      <div>
+        <img src="https://static.plataformaferretto.com.br/home/banner-ferretto.png" alt="Banner" style="height: 120px; border-radius: 8px;">
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="card">
+        <span>QUESTÕES RESPONDIDAS</span>
+        <strong>151/24154</strong>
+      </div>
+      <div class="card">
+        <span>SEMANAS DO SEU PLANO DE ESTUDO</span>
+        <strong>14/26</strong>
+      </div>
+      <div class="card">
+        <span>SEMANAS DO SEU CURSO POR QUESTÕES</span>
+        <strong>0/0</strong>
+      </div>
+      <div class="card">
+        <span>AULAS ASSISTIDAS</span>
+        <strong>99/6164</strong>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ disciplina_nome }} - Professor Ferretto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='tela.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">EB</div>
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">🏠 Início</a></li>
+            <li><a href="{{ url_for('aulas') }}">📚 Aulas</a></li>
+            <li><a href="#">▶️ Ferretto+</a></li>
+            <li><a href="#">📝 Redação</a></li>
+            <li><a href="#">✔️ Provas Comentadas</a></li>
+            <li><a href="#">💬 Curso de Discursivas</a></li>
+            <li><a href="#">🌍 Cursos Regionais</a></li>
+            <li><a href="#">📖 Análise de Obras</a></li>
+            <li><a href="#">📅 Planos de Estudo</a></li>
+            <li><a href="#">🧠 Curso por Questões</a></li>
+            <li><a href="#">❓ Questões</a></li>
+            <li><a href="#">📊 Estatísticas</a></li>
+            <li><a href="#">🧪 Simulados</a></li>
+            <li class="logout-item"><a href="{{ url_for('logout') }}">Sair</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <a href="{{ url_for('aulas') }}" class="back-link">← Voltar para as Disciplinas</a>
+        <h1>Aulas de {{ disciplina_nome }}</h1>
+
+        <div class="videos-grid">
+            {% for video in videos %}
+            <div class="video-card">
+                <div class="video-player-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/{{ video.id_youtube }}"
+                        title="YouTube video player - {{ video.titulo }}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <h3>{{ video.titulo }}</h3>
+                <p>{{ video.descricao }}</p>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

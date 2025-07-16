@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Admin - Vídeos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">F</div>
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">🏠 Início</a></li>
+            <li><a href="{{ url_for('aulas') }}">📚 Aulas</a></li>
+            <li><a href="{{ url_for('admin_videos') }}">🛠️ Admin - Vídeos</a></li>
+            <li class="logout-item"><a href="{{ url_for('logout') }}">Sair</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Painel do Administrador</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for categoria, mensagem in messages %}
+                <div class="alert-{{ 'sucesso' if categoria == 'sucesso' else 'erro' }}">
+                    {{ mensagem }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <h2>Cadastrar Nova Disciplina</h2>
+        <form method="POST">
+            <label for="nova_disciplina">Nome da Disciplina:</label>
+            <input type="text" name="nova_disciplina" required placeholder="Ex: segurança digital">
+            <button type="submit">Adicionar Disciplina</button>
+        </form>
+
+        <h2>Cadastrar Novo Vídeo</h2>
+        <form method="POST">
+            <label for="disciplina_id">Disciplina:</label>
+            <select name="disciplina_id" required>
+                {% for id, nome in disciplinas %}
+                    <option value="{{ id }}">{{ nome.capitalize() }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="titulo">Título do Vídeo:</label>
+            <input type="text" name="titulo" required placeholder="Título do vídeo">
+
+            <label for="descricao">Descrição:</label>
+            <textarea name="descricao" required placeholder="Resumo sobre o conteúdo do vídeo"></textarea>
+
+            <label for="id_youtube">ID do Vídeo no YouTube:</label>
+            <input type="text" name="id_youtube" required placeholder="Ex: dQw4w9WgXcQ">
+
+            <button type="submit">Salvar Vídeo</button>
+        </form>
+
+        <h2>Vídeos por Disciplina</h2>
+        {% for disciplina, videos in dados.items() %}
+            <div class="videos-lista">
+                <h3>{{ disciplina.capitalize() }}</h3>
+                <ul>
+                    {% for video in videos %}
+                        <li>{{ video.titulo }} <small>(ID: {{ video.id_youtube }})</small></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
