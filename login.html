@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Login</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}" />
+  <link rel="stylesheet" href="{{ url_for(filename='login.css') }}" />
 </head>
 <body>
   {% with messages = get_flashed_messages(with_categories=true) %}
